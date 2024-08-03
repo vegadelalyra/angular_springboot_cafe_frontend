@@ -14,7 +14,7 @@ import { GlobalConstants } from '../shared/global-constants';
 })
 export class SignupComponent implements OnInit {
   password = true;
-  confirmpassword = true;
+  confirmPassword = true;
   signupForm: any = FormGroup;
   responseMessage: any;
 
@@ -45,7 +45,7 @@ export class SignupComponent implements OnInit {
         ],
       ],
       password: [null, [Validators.required]],
-      confirmPassword: [null, [null, [Validators.required]]],
+      confirmPassword: [null, [Validators.required]],
     });
   }
 
