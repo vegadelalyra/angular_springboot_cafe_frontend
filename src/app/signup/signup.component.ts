@@ -31,17 +31,17 @@ export class SignupComponent implements OnInit {
     this.signupForm = this.formBuilder.group({
       name: [
         null,
-        [Validators.required, Validators.pattern(GlobalConstants.nameRegex)],
+        [Validators.required, Validators.pattern(GlobalConstants.NAME_REGEX)],
       ],
       email: [
         null,
-        [Validators.required, Validators.pattern(GlobalConstants.emailRegex)],
+        [Validators.required, Validators.pattern(GlobalConstants.EMAIL_REGEX)],
       ],
       contactNumber: [
         null,
         [
           Validators.required,
-          Validators.pattern(GlobalConstants.contactNumberRegex),
+          Validators.pattern(GlobalConstants.CONTACT_NUMBER_REGEX),
         ],
       ],
       password: [null, [Validators.required]],
@@ -61,8 +61,8 @@ export class SignupComponent implements OnInit {
   }
   handleSubmit() {
     this.ngxService.start();
-    var formData = this.signupForm.value;
-    var data = {
+    const formData = this.signupForm.value;
+    const data = {
       name: formData.name,
       email: formData.email,
       contactNumber: formData.contactNumber,
@@ -72,7 +72,7 @@ export class SignupComponent implements OnInit {
       (response: any) => {
         this.ngxService.stop();
         this.dialogRef.close();
-        this.responseMessage = response?.Message;
+        this.responseMessage = response?.message;
         this.snackBarService.openSnackBar(this.responseMessage, '');
         this.router.navigate(['/']);
       },
@@ -81,11 +81,11 @@ export class SignupComponent implements OnInit {
         if (error.error?.message) {
           this.responseMessage = error.error?.message;
         } else {
-          this.responseMessage = GlobalConstants.genericError;
+          this.responseMessage = GlobalConstants.GENERIC_ERROR;
         }
         this.snackBarService.openSnackBar(
           this.responseMessage,
-          GlobalConstants.error
+          GlobalConstants.ERROR
         );
       }
     );
