@@ -1,20 +1,21 @@
 version: 1
 applications:
-  - appRoot: frontend
-    frontend:
+  - frontend:
       phases:
         preBuild:
           commands:
-            - nvm install 16  # Specify the Node.js version
-            - nvm use 16      # Specify the Node.js version
+            - nvm install 16 # Use Node.js version 16
             - npm install
         build:
           commands:
-            - npm run build
+            - npm run build --prod # Build the Angular app
+        postBuild:
+          commands:
+            - echo "Build completed"
       artifacts:
-        baseDirectory: /dist  # Directory where the build files are located
+        baseDirectory: dist/angular_springboot_cafe_frontend # Update this if needed
         files:
-          - '**/*'  # All files in the baseDirectory
+          - '**/*'
       cache:
         paths:
           - node_modules/**/*
